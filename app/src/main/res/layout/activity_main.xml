@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ll"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+
+    <com.example.konstantin.a151515.SquareLayout
+        android:id="@+id/game_board_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/game_board"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/holo_green_light"
+            android:elevation="0dp"
+            android:padding="10dp"
+            android:visibility="visible"
+            app:spanCount="4">
+
+        </android.support.v7.widget.RecyclerView>
+    </com.example.konstantin.a151515.SquareLayout>
+</LinearLayout>
