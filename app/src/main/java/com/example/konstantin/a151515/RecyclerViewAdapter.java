@@ -19,25 +19,25 @@ import java.util.List;
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ButtonViewHolders> {
 
 
-    private List<myButton> myButtonList;
+    private List<SquareButton> mySquareButtonList;
     private Context context;
 
-    public RecyclerViewAdapter(Context context,List<myButton> myButtonList){
-        this.myButtonList = myButtonList;
+    public RecyclerViewAdapter(Context context,List<SquareButton> mySquareButtonList){
+        this.mySquareButtonList = mySquareButtonList;
         this.context = context;
 
     }
 
     public static class ButtonViewHolders extends RecyclerView.ViewHolder{
 
-       //инициализируем View, входящие в RecyclerView.
+        //инициализируем View, входящие в RecyclerView.
 
         public Button b;
 
         public ButtonViewHolders(View itemView) {
             super(itemView);
 
-            b=(Button)itemView.findViewById(R.id.myButton);
+            b=(Button)itemView.findViewById(R.id.squareButton);
 
         }
     }
@@ -45,7 +45,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public ButtonViewHolders onCreateViewHolder(ViewGroup parent, int viewType) {
-       View v= LayoutInflater.from(parent.getContext()).inflate(R.layout.mybutton,parent,false);//парсим layout mybutton
+        View v= LayoutInflater.from(parent.getContext()).inflate(R.layout.square_button,parent,false);//парсим layout square_button
         ButtonViewHolders BVH=new ButtonViewHolders(v);
         return  BVH;
     }
@@ -54,13 +54,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public void onBindViewHolder(ButtonViewHolders holder, int position) {
 
         //связываем ButtonViewHolders с myButtonList
-        holder.b.setBackgroundColor(myButtonList.get(position).bg);
-        holder.b.setText(myButtonList.get(position).name);
+        //holder.b.setBackgroundColor(myButtonList.get(position).bg);
+        // holder.b.setText(myButtonList.get(position).name);
     }
 
     @Override
     public int getItemCount() {
-        return myButtonList.size();
+        return mySquareButtonList.size();
     }
 
 
