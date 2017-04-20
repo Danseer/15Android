@@ -1,14 +1,18 @@
 package com.example.konstantin.a151515;
 
-import android.content.DialogInterface;
+
+import android.media.AudioManager;
+import android.media.SoundPool;
+import android.media.SoundPool.OnLoadCompleteListener;
+import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.MotionEvent;
+import android.util.Log;
 import android.view.View;
-import android.view.ViewDebug;
 import android.widget.Button;
+import android.widget.Chronometer;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,37 +20,92 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements OnLoadCompleteListener{
 
     RecyclerView gameBoard;
+
+
     TextView step;
     TextView nameUser;
-
     GridLayoutManager layoutManager;
-
+    SoundPool sp;
+    Chronometer chron;
+    final int MAX_STREAMS = 2;
     int matrix[][] = new int[4][4];
-    private int Etalon[] = new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 0};
-    private int countStep=0;
+    int Etalon[] = new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 0};
+    int countStep=0;
+    int soundIdExplosion;
+    final String TAG = "States";
+    long time;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d(TAG, "MainActivity: onCreate()");
         setContentView(R.layout.activity_main);
-
-        layoutManager = new GridLayoutManager(MainActivity.this, 4);
-
-        gameBoard = (RecyclerView)findViewById(R.id.game_board);
-        gameBoard.setHasFixedSize(true);
-        gameBoard.setLayoutManager(layoutManager);
-
+        setSoundPool();
+        setLayoutManager();
+        setGameBoard();
+        setChronometr();
         step=(TextView)findViewById(R.id.step);
-
         Generate();
         Redraw();
 
+
+
     }
 
-    //-----------------Random Generate --------------------------
+
+    //----------------------------  setSoundPool -----------------------
+
+    public void setSoundPool(){
+        sp = new SoundPool(MAX_STREAMS, AudioManager.STREAM_MUSIC, 0);
+        sp.setOnLoadCompleteListener(this);
+        soundIdExplosion=sp.load(this,R.raw.sdvig,0);
+    }
+
+    //--------------------  setLayoutManager -----------------------
+
+    public void setLayoutManager(){
+        layoutManager = new GridLayoutManager(MainActivity.this, 4);
+    }
+
+    //------------------------  setGameBoard  -------------------------
+
+    public void setGameBoard(){
+        gameBoard = (RecyclerView)findViewById(R.id.game_board);
+        gameBoard.setHasFixedSize(true);
+        gameBoard.setLayoutManager(layoutManager);
+    }
+
+    //----------------------------  onLoadComplete  ---------------------------
+    @Override
+    public void onLoadComplete(SoundPool soundPool, int sampleId, int status) {
+
+    }
+
+    //------------------------ setChronometr  -------------
+
+    public void setChronometr(){
+        chron=(Chronometer)findViewById(R.id.chron);
+        chron.start();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        chron.setBase(SystemClock.elapsedRealtime()-time);
+        chron.start();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        time=SystemClock.elapsedRealtime()-chron.getBase();
+        chron.stop();
+    }
+
+    //-----------------   Generate   --------------------------
 
     public void Generate() {
 
@@ -95,7 +154,7 @@ public class MainActivity extends AppCompatActivity {
         RecyclerViewAdapter RVA = new RecyclerViewAdapter(MainActivity.this, rowListItem);
         gameBoard.setAdapter(RVA);
 
-        // -----------  onClick for items(with Adapter)   ----------------
+                    // onClick for items(with Adapter) //
 
         RVA.setOnItemClickListener(new RecyclerViewAdapter.OnItemClickListener() {
             @Override
@@ -144,6 +203,7 @@ public class MainActivity extends AppCompatActivity {
                 matrix[i - 1][j] = num;
                 matrix[i][j] = 0;
                 changeCounter();
+                sp.play(soundIdExplosion, 1, 1, 0, 0, 1);
                 Redraw();
             }
         }
@@ -153,6 +213,7 @@ public class MainActivity extends AppCompatActivity {
                 matrix[i + 1][j] = num;
                 matrix[i][j] = 0;
                 changeCounter();
+                sp.play(soundIdExplosion, 1, 1, 0, 0, 1);
                 Redraw();
             }
         }
@@ -162,6 +223,7 @@ public class MainActivity extends AppCompatActivity {
                 matrix[i][j - 1] = num;
                 matrix[i][j] = 0;
                 changeCounter();
+                sp.play(soundIdExplosion, 1, 1, 0, 0, 1);
                 Redraw();
 
             }
@@ -171,7 +233,7 @@ public class MainActivity extends AppCompatActivity {
                 matrix[i][j + 1] = num;
                 matrix[i][j] = 0;
                 changeCounter();
-                CheckWin();
+                sp.play(soundIdExplosion, 1, 1, 0, 0, 1);
                 Redraw();
             }
         }
@@ -199,6 +261,8 @@ public class MainActivity extends AppCompatActivity {
         countStep++;
         step.setText(Integer.toString(countStep) + " Step" );
     }
+
+
 }
 
 

@@ -11,13 +11,23 @@
 
     <TextView
         android:id="@+id/nameUser"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="Konstantin"
+        android:text="Your name : Konstantin"
         android:textAlignment="center"
         android:textColor="@color/colorDerevo"
         android:textSize="30sp"
+        android:textStyle="bold|italic" />
+
+    <Chronometer
+        android:id="@+id/chron"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textAlignment="center"
+        android:textColor="@color/colorDerevo"
+        android:textSize="40sp"
         android:textStyle="bold|italic" />
 
     <TextView
@@ -26,7 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:text="Step"
-        android:textAlignment="textEnd"
+        android:textAlignment="center"
         android:textColor="@color/colorDerevo"
         android:textSize="30sp"
         android:textStyle="bold|italic" />
