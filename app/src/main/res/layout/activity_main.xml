@@ -1,67 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/ll"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:id="@+id/ll"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:background="@android:color/background_light"
+android:elevation="0dp"
+android:gravity="center_vertical"
+android:orientation="vertical"
+android:weightSum="1">
+
+<TextView
+    android:id="@+id/textView"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@android:color/black"
-    android:orientation="vertical">
+    android:layout_height="wrap_content"
+    android:background="@color/bgButton"
+    android:text="Fifteen"
+    android:textAlignment="center"
+    android:textSize="35sp"
+    android:textStyle="bold|italic" />
 
+<ImageView
+    android:id="@+id/imageView"
+    android:layout_width="match_parent"
+    android:layout_height="332dp"
+    app:srcCompat="@drawable/vvv" />
 
-    <TextView
-        android:id="@+id/nameUser"
+<Button
+    android:id="@+id/startGame"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="20dp"
+    android:layout_marginTop="20dp"
+    android:background="@color/bgButton"
+    android:text="Start"
+    android:textColor="@android:color/background_light"
+    android:textSize="30sp"
+    android:textStyle="bold|italic" />
+
+    <Button
+        android:id="@+id/setting"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="Your name : Konstantin"
-        android:textAlignment="center"
-        android:textColor="@color/colorDerevo"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/bgButton"
+        android:text="Settings"
+        android:textColor="@android:color/background_light"
         android:textSize="30sp"
         android:textStyle="bold|italic" />
-
-    <Chronometer
-        android:id="@+id/chron"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:textAlignment="center"
-        android:textColor="@color/colorDerevo"
-        android:textSize="40sp"
-        android:textStyle="bold|italic" />
-
-    <TextView
-        android:id="@+id/step"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="Step"
-        android:textAlignment="center"
-        android:textColor="@color/colorDerevo"
-        android:textSize="30sp"
-        android:textStyle="bold|italic" />
-
-    <com.example.konstantin.a151515.SquareLayout
-        android:id="@+id/game_board_container"
-        android:layout_width="match_parent"
-        android:layout_height="0dp">
-
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/game_board"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@android:color/black"
-            android:elevation="0dp"
-            android:paddingBottom="3dp"
-            android:paddingLeft="3dp"
-            android:paddingRight="3dp"
-            android:paddingTop="3dp"
-            android:visibility="visible"
-            app:spanCount="4">
-
-        </android.support.v7.widget.RecyclerView>
-
-    </com.example.konstantin.a151515.SquareLayout>
-
 </LinearLayout>
