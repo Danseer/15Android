@@ -21,24 +21,24 @@ android:weightSum="1">
     android:textSize="35sp"
     android:textStyle="bold|italic" />
 
-<ImageView
-    android:id="@+id/imageView"
-    android:layout_width="match_parent"
-    android:layout_height="332dp"
-    app:srcCompat="@drawable/vvv" />
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="332dp"
+        app:srcCompat="@drawable/ic" />
 
-<Button
-    android:id="@+id/startGame"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginLeft="20dp"
-    android:layout_marginRight="20dp"
-    android:layout_marginTop="20dp"
-    android:background="@color/bgButton"
-    android:text="Start"
-    android:textColor="@android:color/background_light"
-    android:textSize="30sp"
-    android:textStyle="bold|italic" />
+    <Button
+        android:id="@+id/startGame"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/round_corner"
+        android:text="Start"
+        android:textColor="@android:color/background_light"
+        android:textSize="30sp"
+        android:textStyle="bold|italic" />
 
     <Button
         android:id="@+id/setting"
@@ -47,7 +47,7 @@ android:weightSum="1">
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginTop="20dp"
-        android:background="@color/bgButton"
+        android:background="@drawable/round_corner"
         android:text="Settings"
         android:textColor="@android:color/background_light"
         android:textSize="30sp"

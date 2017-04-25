@@ -1,5 +1,6 @@
 package com.example.konstantin.a151515;
 
+import android.content.Intent;
 import android.media.AudioManager;
 import android.media.SoundPool;
 import android.media.SoundPool.OnLoadCompleteListener;
@@ -36,12 +37,22 @@ public class Start_activity extends AppCompatActivity implements OnLoadCompleteL
     int soundIdExplosion;
     final String TAG = "States";
     long time;
-
+    Intent intent;
+    boolean stateTheme, stateSound, stateClock, stateStep;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_activity);
+
+        intent=getIntent();
+        stateTheme=intent.getBooleanExtra("theme",true);
+        stateSound=intent.getBooleanExtra("sound",true);
+        stateClock=intent.getBooleanExtra("clock",false);
+        stateStep=intent.getBooleanExtra("step",true);
+
+        if(stateClock)
+
         setSoundPool();
         setLayoutManager();
         setGameBoard();
@@ -49,6 +60,7 @@ public class Start_activity extends AppCompatActivity implements OnLoadCompleteL
         Generate();
         Redraw();
         setChronometr();
+
 
     }
     //----------------------------  setSoundPool -----------------------

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ll"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorAccent"
+    android:elevation="0dp"
+    android:gravity="center_vertical|center"
+    android:orientation="vertical"
+    android:weightSum="1">
+
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Theme"
+        android:textAlignment="center"
+        android:textColor="@color/bgButton"
+        android:textSize="30sp"
+        android:textStyle="italic" />
+
+    <Switch
+        android:id="@+id/themeSwitch"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/round_corner"
+        android:checked="true"
+        android:freezesText="false"
+        android:paddingLeft="10dp"
+        android:showText="true"
+        android:soundEffectsEnabled="true"
+        android:splitTrack="false"
+        android:text="Black/White"
+        android:textAlignment="textStart"
+        android:textColor="@android:color/black"
+        android:textOff="BL"
+        android:textOn="WH"
+        android:textSize="20sp"
+        android:textStyle="bold|italic" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="Music"
+        android:textAlignment="center"
+        android:textColor="@color/bgButton"
+        android:textSize="30sp"
+        android:textStyle="italic" />
+
+    <Switch
+        android:id="@+id/soundEffSwitch"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/round_corner"
+        android:checked="true"
+        android:paddingLeft="10dp"
+        android:showText="true"
+        android:text="Sound Effects"
+        android:textAlignment="textStart"
+        android:textColor="@android:color/black"
+        android:textSize="20sp"
+        android:textStyle="bold|italic" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="Score"
+        android:textAlignment="center"
+        android:textColor="@color/bgButton"
+        android:textSize="30sp"
+        android:textStyle="italic" />
+
+    <Switch
+        android:id="@+id/clockSwitch"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/round_corner"
+        android:checked="true"
+        android:paddingLeft="10dp"
+        android:showText="true"
+        android:soundEffectsEnabled="true"
+        android:text="Clock"
+        android:textAlignment="textStart"
+        android:textColor="@android:color/black"
+        android:textSize="20sp"
+        android:textStyle="bold|italic" />
+
+    <Switch
+        android:id="@+id/stepSwitch"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/round_corner"
+        android:checked="true"
+        android:paddingLeft="10dp"
+        android:showText="true"
+        android:soundEffectsEnabled="true"
+        android:text="Steps"
+        android:textColor="@android:color/background_dark"
+        android:textSize="20sp"
+        android:textStyle="bold|italic" />
+
+    <Button
+        android:id="@+id/apply"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/round_corner"
+        android:padding="10dp"
+        android:text="Apply"
+        android:textSize="20sp"
+        android:textStyle="bold|italic" />
+</LinearLayout>
