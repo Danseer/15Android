@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/ll"
+    android:id="@+id/llSetting"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorAccent"
@@ -28,7 +28,7 @@
         android:layout_height="35dp"
         android:layout_margin="10dp"
         android:background="@drawable/round_corner"
-        android:checked="true"
+        android:checked="false"
         android:freezesText="false"
         android:paddingLeft="10dp"
         android:showText="true"
@@ -65,6 +65,20 @@
         android:text="Sound Effects"
         android:textAlignment="textStart"
         android:textColor="@android:color/black"
+        android:textSize="20sp"
+        android:textStyle="bold|italic" />
+
+    <Switch
+        android:id="@+id/musicSwitch"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/round_corner"
+        android:checked="true"
+        android:paddingLeft="10dp"
+        android:showText="true"
+        android:text="Music"
+        android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold|italic" />
 
@@ -118,6 +132,7 @@
         android:background="@drawable/round_corner"
         android:padding="10dp"
         android:text="Apply"
+        android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold|italic" />
 </LinearLayout>

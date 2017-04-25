@@ -36,6 +36,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         this.mySquareButtonList = mySquareButtonList;
         this.context = context;
 
+
     }
 
 //---------------------------------------------------------------------------------

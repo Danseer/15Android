@@ -1,7 +1,9 @@
 package com.example.konstantin.a151515;
 
+import android.content.Context;
 import android.content.Intent;
 import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.media.SoundPool;
 import android.media.SoundPool.OnLoadCompleteListener;
 import android.os.SystemClock;
@@ -9,10 +11,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Layout;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Chronometer;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,6 +32,7 @@ public class Start_activity extends AppCompatActivity implements OnLoadCompleteL
     TextView step;
     TextView nameUser;
     GridLayoutManager layoutManager;
+    LinearLayout l;
     SoundPool sp;
     Chronometer chron;
     final int MAX_STREAMS = 2;
@@ -38,31 +43,77 @@ public class Start_activity extends AppCompatActivity implements OnLoadCompleteL
     final String TAG = "States";
     long time;
     Intent intent;
-    boolean stateTheme, stateSound, stateClock, stateStep;
+    boolean stateTheme, stateSound, stateMusic, stateClock, stateStep, changeStep, changeVol,changeBg, changeChron, changeMusic;
+    MediaPlayer mPlayer;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_activity);
-
-        intent=getIntent();
-        stateTheme=intent.getBooleanExtra("theme",true);
-        stateSound=intent.getBooleanExtra("sound",true);
-        stateClock=intent.getBooleanExtra("clock",false);
-        stateStep=intent.getBooleanExtra("step",true);
-
-        if(stateClock)
-
+        getIntentFromSetting();
         setSoundPool();
         setLayoutManager();
         setGameBoard();
+        changeBg();
         step=(TextView)findViewById(R.id.step);
         Generate();
         Redraw();
-        setChronometr();
+        setChronometr(changeChron);
 
+
+
+        mPlayer=MediaPlayer.create(this, R.raw.en);
+
+        mPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                                            @Override
+                                            public void onCompletion(MediaPlayer mp) {
+                                                //mPlayer.stop();
+                                            }
+        });
 
     }
+
+    //------------------------  getIntentFromSettingActivity  -------------------------------
+
+    public void  getIntentFromSetting(){
+
+        intent=getIntent();
+        stateTheme=intent.getBooleanExtra("theme",false);
+        stateSound=intent.getBooleanExtra("sound",true);
+        stateMusic=intent.getBooleanExtra("music",true);
+        stateClock=intent.getBooleanExtra("clock",true);
+        stateStep=intent.getBooleanExtra("step",true);
+
+        changeStep=stateStep;
+        changeVol=stateSound;
+        changeMusic=stateMusic;
+        changeBg=stateTheme;
+        changeChron=stateClock;
+    }
+
+    //--------------------------------- changeBg  -------------------------------------
+
+    public void changeBg(){
+        l=(LinearLayout)findViewById(R.id.llStart);
+        if(!changeBg){
+            l.setBackgroundColor(getResources().getColor(R.color.black));
+            gameBoard.setBackgroundColor(getResources().getColor(R.color.black));
+        }
+        else{
+            l.setBackgroundColor(getResources().getColor(R.color.white));
+            gameBoard.setBackgroundColor(getResources().getColor(R.color.white));
+        }
+    }
+
+    //--------------------------  setSoundParam  -----------------------------------------
+    public  void setSoundParam(){
+        if(changeVol)
+            sp.play(soundIdExplosion, 1, 1, 0, 0, 1);
+        else
+            sp.play(soundIdExplosion, 0, 0, 0, 0, 1);
+    }
+
     //----------------------------  setSoundPool -----------------------
 
     public void setSoundPool(){
@@ -83,36 +134,47 @@ public class Start_activity extends AppCompatActivity implements OnLoadCompleteL
         gameBoard = (RecyclerView)findViewById(R.id.game_board);
         gameBoard.setHasFixedSize(true);
         gameBoard.setLayoutManager(layoutManager);
+
     }
 
     //----------------------------  onLoadComplete  ---------------------------
+
     @Override
     public void onLoadComplete(SoundPool soundPool, int sampleId, int status) {
 
     }
 
-    //------------------------ setChronometr  -------------
+    //------------------------ setChronometr  -------------------------------------
 
-    public void setChronometr(){
-        chron=(Chronometer)findViewById(R.id.chron);
-        //chron.start();
+    public void setChronometr(boolean changeChron){
+        if(changeChron)
+            chron=(Chronometer)findViewById(R.id.chron);
+        else
+            chron=(Chronometer)findViewById(R.id.chron2);
     }
+
+    //---------------------- onStartActivity  --------------------------------
 
     @Override
     protected void onStart() {
         super.onStart();
         chron.setBase(SystemClock.elapsedRealtime()-time);
         chron.start();
+        if(changeMusic) mPlayer.start();
+
     }
+
+    //------------------------------  onStopActivity  -----------------------------
 
     @Override
     protected void onStop() {
         super.onStop();
         time=SystemClock.elapsedRealtime()-chron.getBase();
         chron.stop();
+        mPlayer.stop();
     }
 
-    //-----------------   Generate   --------------------------
+    //-----------------------------   Generate   --------------------------
 
     public void Generate() {
 
@@ -173,7 +235,7 @@ public class Start_activity extends AppCompatActivity implements OnLoadCompleteL
         });
     }
 
-    //----------------- getAllItemList --------------------
+    //------------------------------------ getAllItemList --------------------
 
     private List<SquareButton> getAllItemList() {
 
@@ -210,8 +272,8 @@ public class Start_activity extends AppCompatActivity implements OnLoadCompleteL
             if (matrix[i - 1][j] == 0) {
                 matrix[i - 1][j] = num;
                 matrix[i][j] = 0;
-                changeCounter();
-                sp.play(soundIdExplosion, 1, 1, 0, 0, 1);
+                changeCounter(changeStep);
+                setSoundParam();
                 Redraw();
             }
         }
@@ -220,8 +282,8 @@ public class Start_activity extends AppCompatActivity implements OnLoadCompleteL
             if (matrix[i + 1][j] == 0) {
                 matrix[i + 1][j] = num;
                 matrix[i][j] = 0;
-                changeCounter();
-                sp.play(soundIdExplosion, 1, 1, 0, 0, 1);
+                changeCounter(changeStep);
+                setSoundParam();
                 Redraw();
             }
         }
@@ -230,8 +292,8 @@ public class Start_activity extends AppCompatActivity implements OnLoadCompleteL
             if (matrix[i][j - 1] == 0) {
                 matrix[i][j - 1] = num;
                 matrix[i][j] = 0;
-                changeCounter();
-                sp.play(soundIdExplosion, 1, 1, 0, 0, 1);
+                changeCounter(changeStep);
+                setSoundParam();
                 Redraw();
 
             }
@@ -240,8 +302,8 @@ public class Start_activity extends AppCompatActivity implements OnLoadCompleteL
             if (matrix[i][j + 1] == 0) {
                 matrix[i][j + 1] = num;
                 matrix[i][j] = 0;
-                changeCounter();
-                sp.play(soundIdExplosion, 1, 1, 0, 0, 1);
+                changeCounter(changeStep);
+                setSoundParam();
                 Redraw();
             }
         }
@@ -265,8 +327,9 @@ public class Start_activity extends AppCompatActivity implements OnLoadCompleteL
     //------------------------- Win --------------------------------
 
     //----------------------- Step Counter ------------------------------
-    public void changeCounter(){
+    public void changeCounter(boolean changeStep){
         countStep++;
+        if(changeStep)
         step.setText(Integer.toString(countStep) + " Step" );
 
     }
