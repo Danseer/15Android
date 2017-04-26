@@ -118,7 +118,7 @@ public class Start_activity extends AppCompatActivity implements OnLoadCompleteL
 
     public void setSoundPool(){
         sp = new SoundPool(MAX_STREAMS, AudioManager.STREAM_MUSIC, 0);
-        sp.setOnLoadCompleteListener(this);
+        //sp.setOnLoadCompleteListener(this);
         soundIdExplosion=sp.load(this,R.raw.sdvig,0);
     }
 
@@ -136,7 +136,6 @@ public class Start_activity extends AppCompatActivity implements OnLoadCompleteL
         gameBoard.setLayoutManager(layoutManager);
 
     }
-
     //----------------------------  onLoadComplete  ---------------------------
 
     @Override

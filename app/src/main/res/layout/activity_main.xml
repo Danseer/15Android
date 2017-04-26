@@ -15,11 +15,18 @@
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="0dp"
         android:background="@color/bgButton"
         android:text="Fifteen"
         android:textAlignment="center"
         android:textSize="35sp"
         android:textStyle="bold|italic" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:text="TextView" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -38,7 +45,8 @@
         android:text="Start"
         android:textColor="@android:color/background_light"
         android:textSize="30sp"
-        android:textStyle="bold|italic" />
+        android:textStyle="bold|italic"
+        android:visibility="invisible" />
 
     <Button
         android:id="@+id/setting"
@@ -51,5 +59,6 @@
         android:text="Settings"
         android:textColor="@android:color/background_light"
         android:textSize="30sp"
-        android:textStyle="bold|italic" />
+        android:textStyle="bold|italic"
+        android:visibility="invisible" />
 </LinearLayout>
