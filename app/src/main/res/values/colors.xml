@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#ff4081</color>
-    <color name="colorDerevo">#8F5019</color>
+    <color name="colorPrimary">#3f51b5</color>
+    <color name="colorPrimaryDark">#303f9f</color>
+    <color name="colorAccent">#575756</color>
+    <color name="colorDerevo">#8f5019</color>
+
+    <color name="black_overlay">#66000000</color>
+    <color name="gren">#0d1e14</color>
+    <color name="bgButton">#b8a797</color>
+    <color name="txtColor">#a86121</color>
+    <color name="black">#000000</color>
+    <color name="white">#ffffff</color>
+    <color name="red">#FC0707</color>
+
 </resources>
